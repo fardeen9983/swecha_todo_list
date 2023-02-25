@@ -3,8 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:todo_list/models/todo_item.dart';
 import 'package:todo_list/todo_service.dart';
 
-class PendingToDoItem extends StatelessWidget {
-  PendingToDoItem({Key? key, required this.item, required this.onPressed})
+class CompletedToDoItem extends StatelessWidget {
+  CompletedToDoItem({Key? key, required this.item, required this.onPressed})
       : super(key: key);
   final ToDoItem item;
   final _service = ToDoService();
@@ -25,13 +25,12 @@ class PendingToDoItem extends StatelessWidget {
         ),
         trailing: IconButton(
             onPressed: () {
-              int index = _service.items.indexOf(item);
-              _service.items[index].status = ToDoItemStatus.completed;
+              _service.items.remove(item);
               onPressed();
             },
             icon: const Icon(
-              Icons.done_all,
-              color: Colors.green,
+              Icons.delete,
+              color: Colors.red,
             )),
       ),
     );

@@ -3,10 +3,12 @@ enum ToDoItemStatus { pending, completed }
 class ToDoItem {
   final DateTime deadline;
   final String title;
-  final ToDoItemStatus status;
+  final int id;
+  ToDoItemStatus status;
 
   ToDoItem(
-      {required this.deadline,
+      {required this.id,
+      required this.deadline,
       required this.title,
       this.status = ToDoItemStatus.pending});
 
@@ -15,9 +17,12 @@ class ToDoItem {
     ToDoItemStatus itemStatus =
         status == 0 ? ToDoItemStatus.pending : ToDoItemStatus.completed;
     return ToDoItem(
-        deadline: json['deadline'], title: json['title'], status: itemStatus);
+        id: json['id'],
+        deadline: json['deadline'],
+        title: json['title'],
+        status: itemStatus);
   }
 
   Map<String, dynamic> toJson() =>
-      {"status": status.index, "deadline": deadline, "title": title};
+      {"status": status.index, "deadline": deadline, "title": title, 'id': id};
 }

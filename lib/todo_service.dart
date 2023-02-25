@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:path_provider/path_provider.dart';
-import 'package:swecha_todo_list/models/todo_item.dart';
+
+import 'package:todo_list/models/todo_item.dart';
 
 class ToDoService {
   static final ToDoService _instance = ToDoService._internal();
@@ -14,12 +14,12 @@ class ToDoService {
 
   List<ToDoItem> items = [];
 
-  Future<void> readFile() async {
-    Directory dir = await getApplicationDocumentsDirectory();
-    var jsonFile = File("${dir.path}/$fileName");
-    if (await jsonFile.exists()) {
-      List<dynamic> content = json.decode(jsonFile.readAsStringSync());
-      items.addAll(content.map((e) => ToDoItem.fromJson(e)));
-    }
-  }
+  // Future<void> readFile() async {
+  //   Directory dir = await getApplicationDocumentsDirectory();
+  //   var jsonFile = File("${dir.path}/$fileName");
+  //   if (await jsonFile.exists()) {
+  //     List<dynamic> content = json.decode(jsonFile.readAsStringSync());
+  //     items.addAll(content.map((e) => ToDoItem.fromJson(e)));
+  //   }
+  // }
 }

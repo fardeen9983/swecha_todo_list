@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swecha_todo_list/todo_service.dart';
+import 'package:todo_list/todo_service.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -26,11 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      ToDoService()
-          .readFile()
-          .then((value) => Navigator.pushReplacementNamed(context, "/home"));
-    });
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Navigator.pushReplacementNamed(context, "/home");
+
+    });
   }
 }
