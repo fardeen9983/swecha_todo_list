@@ -25,6 +25,8 @@ class PendingToDoItem extends StatelessWidget {
         ),
         trailing: IconButton(
             onPressed: () {
+              item.status = ToDoItemStatus.completed;
+              _service.updateToDoItem(item);
               int index = _service.items.indexOf(item);
               _service.items[index].status = ToDoItemStatus.completed;
               onPressed();

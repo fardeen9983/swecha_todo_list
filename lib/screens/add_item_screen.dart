@@ -1,3 +1,4 @@
+import 'package:appwrite/appwrite.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_list/colors.dart';
@@ -109,11 +110,11 @@ class _AddItemScreenState extends State<AddItemScreen> {
     );
   }
 
-  void onSubmit() {
+  void onSubmit() async {
     String value = _controller.text;
     if (value.isNotEmpty) {
-      ToDoService().items.add(ToDoItem(
-          id: ToDoService().items.length + 1,
+      await ToDoService().addToDoItem(ToDoItem(
+          id: ID.unique(),
           deadline: dateTime,
           title: value));
     }

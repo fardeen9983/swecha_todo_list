@@ -1,9 +1,11 @@
+import 'package:intl/intl.dart';
+
 enum ToDoItemStatus { pending, completed }
 
 class ToDoItem {
   final DateTime deadline;
   final String title;
-  final int id;
+  final String id;
   ToDoItemStatus status;
 
   ToDoItem(
@@ -13,16 +15,19 @@ class ToDoItem {
       this.status = ToDoItemStatus.pending});
 
   factory ToDoItem.fromJson(Map<String, dynamic> json) {
-    int status = json['status'];
+    int status = json['status'] ?? 0;
     ToDoItemStatus itemStatus =
         status == 0 ? ToDoItemStatus.pending : ToDoItemStatus.completed;
     return ToDoItem(
         id: json['id'],
-        deadline: json['deadline'],
+        deadline: DateTime.parse(json['deadline']),
         title: json['title'],
         status: itemStatus);
   }
 
-  Map<String, dynamic> toJson() =>
-      {"status": status.index, "deadline": deadline, "title": title, 'id': id};
+  Map<String, dynamic> toJson() => {
+        "status": status == ToDoItemStatus.pending ? 0 : 1,
+        "deadline": DateFormat(DateFormat.YEAR_ABBR_MONTH_DAY).format(deadline),
+        "title": title,
+      };
 }

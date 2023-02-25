@@ -25,7 +25,7 @@ class CompletedToDoItem extends StatelessWidget {
         ),
         trailing: IconButton(
             onPressed: () {
-              _service.items.remove(item);
+              _service.deleteToDoItem(item.id);
               onPressed();
             },
             icon: const Icon(

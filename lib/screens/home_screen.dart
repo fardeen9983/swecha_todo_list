@@ -15,6 +15,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ToDoService _service = ToDoService();
 
+
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     List<ToDoItem> items = _service.items;
@@ -25,8 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
         .where((element) => element.status == ToDoItemStatus.completed)
         .toList();
 
-    print(pending.length);
-    print(completed.length);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorResource.primary,
